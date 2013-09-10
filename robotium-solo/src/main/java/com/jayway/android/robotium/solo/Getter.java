@@ -47,7 +47,7 @@ class Getter {
 	 */
 
 	public <T extends View> T getView(Class<T> classToFilterBy, int index) {
-		return waiter.waitForAndGetView(index, classToFilterBy);
+		return waiter.getView(index, classToFilterBy);
 	}
 
 	/**

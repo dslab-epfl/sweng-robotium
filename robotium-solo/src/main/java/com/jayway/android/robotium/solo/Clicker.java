@@ -335,7 +335,7 @@ class Clicker {
 	 */
 
 	public void clickOnWebElement(By by, int match, boolean scroll){	
-		WebElement webElementToClick = waiter.waitForWebElement(by, match, Timeout.getSmallTimeout(), scroll);
+		WebElement webElementToClick = waiter.getWebElement(by, match, scroll);
 
 		if(webElementToClick == null){
 			if(match > 1) {
@@ -416,7 +416,7 @@ class Clicker {
 	 */
 
 	public <T extends View> void clickOn(Class<T> viewClass, int index) {
-		clickOnScreen(waiter.waitForAndGetView(index, viewClass));
+		clickOnScreen(waiter.getView(index, viewClass));
 	}
 
 
@@ -449,7 +449,7 @@ class Clicker {
 			lineIndex = 0;
 
 		ArrayList<View> views = new ArrayList<View>();
-		final AbsListView absListView = waiter.waitForAndGetView(index, AbsListView.class);
+		final AbsListView absListView = waiter.getView(index, AbsListView.class);
 
 		if(absListView == null)
 			Assert.assertTrue("ListView is null!", false);

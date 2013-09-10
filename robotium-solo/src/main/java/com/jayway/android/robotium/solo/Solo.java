@@ -1059,7 +1059,7 @@ public class Solo {
 	 */
 
 	public boolean scrollDownList(int index) {
-		return scroller.scrollList(waiter.waitForAndGetView(index, ListView.class), Scroller.DOWN, false);
+		return scroller.scrollList(waiter.getView(index, ListView.class), Scroller.DOWN, false);
 	}
 
 	/**
@@ -1071,7 +1071,7 @@ public class Solo {
 	 */
 
 	public boolean scrollListToBottom(int index) {
-		return scroller.scrollList(waiter.waitForAndGetView(index, ListView.class), Scroller.DOWN, true);
+		return scroller.scrollList(waiter.getView(index, ListView.class), Scroller.DOWN, true);
 	}
 	
 	/**
@@ -1083,7 +1083,7 @@ public class Solo {
 	 */
 	
 	public boolean scrollUpList(int index) {
-		return scroller.scrollList(waiter.waitForAndGetView(index, ListView.class), Scroller.UP, false);
+		return scroller.scrollList(waiter.getView(index, ListView.class), Scroller.UP, false);
 	}
 	
     /**
@@ -1095,7 +1095,7 @@ public class Solo {
    	 */
 
    	public boolean scrollListToTop(int index) {
-   		return scroller.scrollList(waiter.waitForAndGetView(index, ListView.class), Scroller.UP, true);
+   		return scroller.scrollList(waiter.getView(index, ListView.class), Scroller.UP, true);
    	}
    	
    	/**
@@ -1117,7 +1117,7 @@ public class Solo {
 	 */
    	
    	public void scrollListToLine(int index, int line){
-   		scroller.scrollListToLine(waiter.waitForAndGetView(index, AbsListView.class), line);
+   		scroller.scrollListToLine(waiter.getView(index, AbsListView.class), line);
    	}
    	
    	/**
@@ -1257,7 +1257,7 @@ public class Solo {
 	 */
 	
 	public void setDatePicker(int index, int year, int monthOfYear, int dayOfMonth) {
-		setDatePicker(waiter.waitForAndGetView(index, DatePicker.class), year, monthOfYear, dayOfMonth);
+		setDatePicker(waiter.getView(index, DatePicker.class), year, monthOfYear, dayOfMonth);
 	}
 	
 	/**
@@ -1284,7 +1284,7 @@ public class Solo {
 	 */
 	
 	public void setTimePicker(int index, int hour, int minute) {		
-		setTimePicker(waiter.waitForAndGetView(index, TimePicker.class), hour, minute);
+		setTimePicker(waiter.getView(index, TimePicker.class), hour, minute);
 	}
 	
 	/**
@@ -1310,7 +1310,7 @@ public class Solo {
 	 */
 
 	public void setProgressBar(int index, int progress){
-		setProgressBar(waiter.waitForAndGetView(index, ProgressBar.class), progress);
+		setProgressBar(waiter.getView(index, ProgressBar.class), progress);
 	}
 
 	/**
@@ -1334,7 +1334,7 @@ public class Solo {
 	 */
 
 	public void setSlidingDrawer(int index, int status){
-		setSlidingDrawer(waiter.waitForAndGetView(index, SlidingDrawer.class), status);
+		setSlidingDrawer(waiter.getView(index, SlidingDrawer.class), status);
 	}
 
 	/**
@@ -1360,7 +1360,7 @@ public class Solo {
 	 */
 
 	public void enterText(int index, String text) {
-		textEnterer.setEditText(waiter.waitForAndGetView(index, EditText.class), text);		
+		textEnterer.setEditText(waiter.getView(index, EditText.class), text);		
 	}
 	
 	/**
@@ -1384,7 +1384,7 @@ public class Solo {
 	 */
 
 	public void enterTextInWebElement(By by, String text){
-		if(waiter.waitForWebElement(by, 0, Timeout.getSmallTimeout(), false) == null) {
+		if(waiter.getWebElement(by, 0, false) == null) {
 			Assert.assertTrue("WebElement with " + webUtils.splitNameByUpperCase(by.getClass().getSimpleName()) + ": '" + by.getValue() + "' is not found!", false);
 		}
 		webUtils.enterTextIntoWebElement(by, text);
@@ -1399,7 +1399,7 @@ public class Solo {
 	 */
 
 	public void typeText(int index, String text) {
-		textEnterer.typeText(waiter.waitForAndGetView(index, EditText.class), text);		
+		textEnterer.typeText(waiter.getView(index, EditText.class), text);		
 	}
 	
 	/**
@@ -1466,7 +1466,7 @@ public class Solo {
 	 */
 
 	public void clearEditText(int index) {
-		textEnterer.setEditText(waiter.waitForAndGetView(index, EditText.class), "");
+		textEnterer.setEditText(waiter.getView(index, EditText.class), "");
 	}
     
     /**
@@ -1715,7 +1715,7 @@ public class Solo {
 	 */
 
 	public <T extends View> T getView(Class<T> viewClass, int index){
-		return waiter.waitForAndGetView(index, viewClass);
+		return waiter.getView(index, viewClass);
 	}
 	
 	/**
@@ -1728,7 +1728,7 @@ public class Solo {
 
 	public WebElement getWebElement(By by, int index){
 		int match = index + 1;
-		WebElement webElement = waiter.waitForWebElement(by, match, Timeout.getSmallTimeout(), true);
+		WebElement webElement = waiter.getWebElement(by, match, true);
 
 		if(webElement == null) {
 			if(match > 1){
@@ -1749,7 +1749,7 @@ public class Solo {
 	 */
 
 	public String getWebUrl() {
-		final WebView webView = waiter.waitForAndGetView(0, WebView.class);
+		final WebView webView = waiter.getView(0, WebView.class);
 
 		if(webView == null)
 			Assert.assertTrue("WebView is not found!", false);
