@@ -308,35 +308,15 @@ class Waiter {
 	}
 
 	/**
-	 * Waits for a web element.
+	 * Returns a web element.
 	 * 
 	 * @param by the By object. Examples are By.id("id") and By.name("name")
 	 * @param minimumNumberOfMatches the minimum number of matches that are expected to be shown. {@code 0} means any number of matches
-	 * @param timeout the the amount of time in milliseconds to wait 
 	 * @param scroll {@code true} if scrolling should be performed 
 	 */
 
-	public WebElement waitForWebElement(final By by, int minimumNumberOfMatches, int timeout, boolean scroll){
-		final long endTime = SystemClock.uptimeMillis() + timeout;
-
-		while (true) {	
-
-			final boolean timedOut = SystemClock.uptimeMillis() > endTime;
-
-			if (timedOut){
-				searcher.logMatchesFound(by.getValue());
-				return null;
-			}
-			sleeper.sleep();
-
-			WebElement webElementToReturn = searcher.searchForWebElement(by, minimumNumberOfMatches, scroll); 
-
-			if(webElementToReturn != null)
-				return webElementToReturn;
-
-			if(scroll) 
-				scroller.scroll(Scroller.DOWN);
-		}
+	public WebElement getWebElement(final By by, int minimumNumberOfMatches, boolean scroll){
+		return searcher.searchForWebElement(by, minimumNumberOfMatches, scroll); 
 	}
 
 
@@ -470,16 +450,14 @@ class Waiter {
 	}
 
 	/**
-	 * Waits for and returns a View.
+	 * Returns a View.
 	 * 
 	 * @param index the index of the view
 	 * @param classToFilterby the class to filter
 	 * @return the specified View
 	 */
 
-	public <T extends View> T waitForAndGetView(int index, Class<T> classToFilterBy){
-		long endTime = SystemClock.uptimeMillis() + Timeout.getSmallTimeout();
-		while (SystemClock.uptimeMillis() <= endTime && !waitForView(classToFilterBy, index, true, true));
+	public <T extends View> T getView(int index, Class<T> classToFilterBy){
 		int numberOfUniqueViews = searcher.getNumberOfUniqueViews();
 		ArrayList<T> views = RobotiumUtils.removeInvisibleViews(viewFetcher.getCurrentViews(classToFilterBy));
 
