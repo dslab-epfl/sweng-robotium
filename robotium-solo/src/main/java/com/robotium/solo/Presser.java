@@ -135,7 +135,7 @@ class Presser{
 
 	public void pressSpinnerItem(int spinnerIndex, int itemIndex)
 	{	
-		clicker.clickOnScreen(waiter.waitForAndGetView(spinnerIndex, Spinner.class));
+		clicker.clickOnScreen(waiter.getView(spinnerIndex, Spinner.class));
 		dialogUtils.waitForDialogToOpen(Timeout.getSmallTimeout(), true);
 
 		try{

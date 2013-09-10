@@ -43,7 +43,7 @@ class Checker {
 	
 	public <T extends CompoundButton> boolean isButtonChecked(Class<T> expectedClass, int index)
 	{
-		return (waiter.waitForAndGetView(index, expectedClass).isChecked());
+		return (waiter.getView(index, expectedClass).isChecked());
 	}
 	
 	/**
@@ -92,7 +92,7 @@ class Checker {
 	
 	public boolean isSpinnerTextSelected(String text)
 	{
-		waiter.waitForAndGetView(0, Spinner.class);
+		waiter.getView(0, Spinner.class);
 				
 		ArrayList<Spinner> spinnerList = viewFetcher.getCurrentViews(Spinner.class);
 		for(int i = 0; i < spinnerList.size(); i++){
@@ -111,7 +111,7 @@ class Checker {
 	
 	public boolean isSpinnerTextSelected(int spinnerIndex, String text)
 	{
-		Spinner spinner = waiter.waitForAndGetView(spinnerIndex, Spinner.class);
+		Spinner spinner = waiter.getView(spinnerIndex, Spinner.class);
 		
 		TextView textView = (TextView) spinner.getChildAt(0);
 		if(textView.getText().equals(text))
