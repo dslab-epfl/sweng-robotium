@@ -561,8 +561,7 @@ public class Solo {
 	 */
 
 	public void clickOnScreen(float x, float y) {
-		sleeper.sleep();
-		clicker.clickOnScreen(x, y, null);
+		clicker.clickOnScreen(x, y);
 	}
 
 	/**
