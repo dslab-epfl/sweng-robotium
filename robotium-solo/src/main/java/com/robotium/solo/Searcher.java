@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Callable;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -54,44 +53,12 @@ class Searcher {
 
 	/**
 	 * Searches for a {@code View} with the given regex string and returns {@code true} if the
-	 * searched {@code Button} is found a given number of times. Will automatically scroll when needed.
-	 *
-	 * @param viewClass what kind of {@code View} to search for, e.g. {@code Button.class} or {@code TextView.class}
-	 * @param regex the text to search for. The parameter <strong>will</strong> be interpreted as a regular expression.
-	 * @param expectedMinimumNumberOfMatches the minimum number of matches expected to be found. {@code 0} matches means that one or more
-	 * matches are expected to be found
-	 * @param scroll whether scrolling should be performed
-	 * @param onlyVisible {@code true} if only texts visible on the screen should be searched
-	 * 
-	 * @return {@code true} if a {@code View} of the specified class with the given text is found a given number of
-	 * times, and {@code false} if it is not found
-	 */
-
-	public boolean searchWithTimeoutFor(Class<? extends TextView> viewClass, String regex, int expectedMinimumNumberOfMatches, boolean scroll, boolean onlyVisible) {
-		final long endTime = SystemClock.uptimeMillis() + TIMEOUT;
-
-		TextView foundAnyMatchingView = null;
-
-		while (SystemClock.uptimeMillis() < endTime) {
-			sleeper.sleep();
-			foundAnyMatchingView = searchFor(viewClass, regex, expectedMinimumNumberOfMatches, 0, scroll, onlyVisible);
-			if (foundAnyMatchingView !=null){
-				return true;
-			}
-		}
-		return false;
-	}
-
-
-	/**
-	 * Searches for a {@code View} with the given regex string and returns {@code true} if the
 	 * searched {@code View} is found a given number of times.
 	 *
 	 * @param viewClass what kind of {@code View} to search for, e.g. {@code Button.class} or {@code TextView.class}
 	 * @param regex the text to search for. The parameter <strong>will</strong> be interpreted as a regular expression.
 	 * @param expectedMinimumNumberOfMatches the minimum number of matches expected to be found. {@code 0} matches means that one or more
 	 * matches are expected to be found.
-	 * @param timeout the amount of time in milliseconds to wait
 	 * @param scroll whether scrolling should be performed
 	 * @param onlyVisible {@code true} if only texts visible on the screen should be searched
 	 * 
@@ -99,7 +66,7 @@ class Searcher {
 	 * {@code false} if it is not found.
 	 */
 
-	public <T extends TextView> T searchFor(final Class<T> viewClass, final String regex, int expectedMinimumNumberOfMatches, final long timeout, final boolean scroll, final boolean onlyVisible) {
+	public <T extends TextView> T searchFor(final Class<T> viewClass, final String regex, int expectedMinimumNumberOfMatches, final boolean scroll, final boolean onlyVisible) {
 		if(expectedMinimumNumberOfMatches < 1) {
 			expectedMinimumNumberOfMatches = 1;
 		}
@@ -123,7 +90,7 @@ class Searcher {
 		};
 
 		try {
-			return searchFor(viewFetcherCallback, regex, expectedMinimumNumberOfMatches, timeout, scroll);
+			return searchFor(viewFetcherCallback, regex, expectedMinimumNumberOfMatches, scroll);
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -180,7 +147,6 @@ class Searcher {
 	 * @param regex the text to search for. The parameter <strong>will</strong> be interpreted as a regular expression.
 	 * @param expectedMinimumNumberOfMatches the minimum number of matches expected to be found. {@code 0} matches means that one or more
 	 * matches are expected to be found.
-	 * @param timeout the amount of time in milliseconds to wait
 	 * @param scroll whether scrolling should be performed
 	 * 
 	 * @return {@code true} if a view of the specified class with the given text is found a given number of times.
@@ -189,18 +155,11 @@ class Searcher {
 	 * @throws Exception not really, it's just the signature of {@code Callable}
 	 */
 
-	public <T extends TextView> T searchFor(Callable<Collection<T>> viewFetcherCallback, String regex, int expectedMinimumNumberOfMatches, long timeout, boolean scroll) throws Exception {
-		final long endTime = SystemClock.uptimeMillis() + timeout;	
+	public <T extends TextView> T searchFor(Callable<Collection<T>> viewFetcherCallback, String regex, int expectedMinimumNumberOfMatches, boolean scroll) throws Exception {
+	
 		Collection<T> views;
 
 		while (true) {
-			final boolean timedOut = timeout > 0 && SystemClock.uptimeMillis() > endTime;
-
-			if(timedOut){
-				logMatchesFound(regex);
-				return null;
-			}
-
 			views = viewFetcherCallback.call();
 
 			for(T view : views){
