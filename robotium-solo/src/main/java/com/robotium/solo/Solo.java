@@ -22,7 +22,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
-import android.widget.ScrollView;
 import android.widget.SlidingDrawer;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -33,8 +32,9 @@ import android.app.Instrumentation.ActivityMonitor;
 
 /**
  * Main class for development of Robotium tests.  
+ * 
  * Robotium has full support for Views, WebViews, Activities, Dialogs, Menus and Context Menus. 
- * <br>
+ * 
  * Robotium can be used in conjunction with Android test classes like 
  * ActivityInstrumentationTestCase2 and SingleLaunchActivityTestCase. 
  * 
@@ -265,232 +265,8 @@ public class Solo {
 		View topParent = viewFetcher.getTopParent(view);
 		return topParent;
 	}
-
-	/**
-	 * Waits for the specified text to appear. Default timeout is 20 seconds. 
-	 * 
-	 * @param text the text to wait for, specified as a regular expression
-	 * @return {@code true} if text is displayed and {@code false} if it is not displayed before the timeout
-	 */
-
-	public boolean waitForText(String text) {
-		return (waiter.waitForText(text) != null);
-	}
-
-	/**
-	 * Waits for the specified text to appear. 
-	 * 
-	 * @param text the text to wait for, specified as a regular expression
-	 * @param minimumNumberOfMatches the minimum number of matches that are expected to be found. {@code 0} means any number of matches
-	 * @param timeout the the amount of time in milliseconds to wait 
-	 * @return {@code true} if text is displayed and {@code false} if it is not displayed before the timeout
-	 */
-
-	public boolean waitForText(String text, int minimumNumberOfMatches, long timeout) {
-		return (waiter.waitForText(text, minimumNumberOfMatches, timeout) != null);
-	}
-
-	/**
-	 * Waits for the specified text to appear. 
-	 * 
-	 * @param text the text to wait for, specified as a regular expression
-	 * @param minimumNumberOfMatches the minimum number of matches that are expected to be found. {@code 0} means any number of matches
-	 * @param timeout the the amount of time in milliseconds to wait
-	 * @param scroll {@code true} if scrolling should be performed
-	 * @return {@code true} if text is displayed and {@code false} if it is not displayed before the timeout
-	 */
-
-	public boolean waitForText(String text, int minimumNumberOfMatches, long timeout, boolean scroll) {
-		return (waiter.waitForText(text, minimumNumberOfMatches, timeout, scroll) != null);
-	}
-
-	/**
-	 * Waits for the specified text to appear. 
-	 * 
-	 * @param text the text to wait for, specified as a regular expression
-	 * @param minimumNumberOfMatches the minimum number of matches that are expected to be found. {@code 0} means any number of matches
-	 * @param timeout the the amount of time in milliseconds to wait
-	 * @param scroll {@code true} if scrolling should be performed
-	 * @param onlyVisible {@code true} if only visible text views should be waited for
-	 * @return {@code true} if text is displayed and {@code false} if it is not displayed before the timeout
-	 */
-
-	public boolean waitForText(String text, int minimumNumberOfMatches, long timeout, boolean scroll, boolean onlyVisible) {
-		return (waiter.waitForText(text, minimumNumberOfMatches, timeout, scroll, onlyVisible, true) != null);
-	}
-
-	/**
-	 * Waits for a View matching the specified resource id. Default timeout is 20 seconds. 
-	 * 
-	 * @param id the R.id of the {@link View} to wait for
-	 * @return {@code true} if the {@link View} is displayed and {@code false} if it is not displayed before the timeout
-	 */
-
-	public boolean waitForView(int id){
-		return waitForView(id, 0, Timeout.getLargeTimeout(), true);
-	}
-
-	/**
-	 * Waits for a View matching the specified resource id. 
-	 * 
-	 * @param id the R.id of the {@link View} to wait for
-	 * @param minimumNumberOfMatches the minimum number of matches that are expected to be found. {@code 0} means any number of matches
-	 * @param timeout the amount of time in milliseconds to wait
-	 * @return {@code true} if the {@link View} is displayed and {@code false} if it is not displayed before the timeout
-	 */
-
-	public boolean waitForView(int id, int minimumNumberOfMatches, int timeout){
-		return waitForView(id, minimumNumberOfMatches, timeout, true);
-	}
-
-	/**
-	 * Waits for a View matching the specified resource id. 
-	 * 
-	 * @param id the R.id of the {@link View} to wait for
-	 * @param minimumNumberOfMatches the minimum number of matches that are expected to be found. {@code 0} means any number of matches
-	 * @param timeout the amount of time in milliseconds to wait
-	 * @param scroll {@code true} if scrolling should be performed
-	 * @return {@code true} if the {@link View} is displayed and {@code false} if it is not displayed before the timeout
-	 */
-
-	public boolean waitForView(int id, int minimumNumberOfMatches, int timeout, boolean scroll){
-		int index = minimumNumberOfMatches-1;
-
-		if(index < 1)
-			index = 0;
-
-		return (waiter.waitForView(id, index, timeout, scroll) != null);
-	}
-
-	/**
-	 * Waits for a View matching the specified class. Default timeout is 20 seconds. 
-	 * 
-	 * @param viewClass the {@link View} class to wait for
-	 * @return {@code true} if the {@link View} is displayed and {@code false} if it is not displayed before the timeout
-	 */
-
-	public <T extends View> boolean waitForView(final Class<T> viewClass){
-
-		return waiter.waitForView(viewClass, 0, Timeout.getLargeTimeout(), true);
-	}
-
-	/**
-	 * Waits for the specified View. Default timeout is 20 seconds. 
-	 * 
-	 * @param view the {@link View} object to wait for
-	 * @return {@code true} if the {@link View} is displayed and {@code false} if it is not displayed before the timeout
-	 */
-
-	public <T extends View> boolean waitForView(View view){
-		return waiter.waitForView(view);
-	}
-
-	/**
-	 * Waits for the specified View. 
-	 * 
-	 * @param view the {@link View} object to wait for
-	 * @param timeout the amount of time in milliseconds to wait
-	 * @param scroll {@code true} if scrolling should be performed
-	 * @return {@code true} if the {@link View} is displayed and {@code false} if it is not displayed before the timeout
-	 */
-
-	public <T extends View> boolean waitForView(View view, int timeout, boolean scroll){
-		boolean checkIsShown = false;
-
-		if(!scroll){
-			checkIsShown = true;
-		}
-
-		return waiter.waitForView(view, timeout, scroll, checkIsShown);
-	}
-
-	/**
-	 * Waits for a View matching the specified class.
-	 * 
-	 * @param viewClass the {@link View} class to wait for
-	 * @param minimumNumberOfMatches the minimum number of matches that are expected to be found. {@code 0} means any number of matches
-	 * @param timeout the amount of time in milliseconds to wait
-	 * @return {@code true} if the {@link View} is displayed and {@code false} if it is not displayed before the timeout
-	 */
-
-	public <T extends View> boolean waitForView(final Class<T> viewClass, final int minimumNumberOfMatches, final int timeout){
-		int index = minimumNumberOfMatches-1;
-
-		if(index < 1)
-			index = 0;
-
-		return waiter.waitForView(viewClass, index, timeout, true);
-	}
-
-	/**
-	 * Waits for a View matching the specified class.
-	 * 
-	 * @param viewClass the {@link View} class to wait for
-	 * @param minimumNumberOfMatches the minimum number of matches that are expected to be found. {@code 0} means any number of matches
-	 * @param timeout the amount of time in milliseconds to wait
-	 * @param scroll {@code true} if scrolling should be performed
-	 * @return {@code true} if the {@link View} is displayed and {@code false} if it is not displayed before the timeout
-	 */
-
-	public <T extends View> boolean waitForView(final Class<T> viewClass, final int minimumNumberOfMatches, final int timeout,final boolean scroll){
-		int index = minimumNumberOfMatches-1;
-
-		if(index < 1)
-			index = 0;
-
-		return waiter.waitForView(viewClass, index, timeout, scroll);
-	}
-
-	/**
-	 * Waits for a WebElement matching the specified By object. Default timeout is 20 seconds. 
-	 * 
-	 * @param by the By object. Examples are: {@code By.id("id")} and {@code By.name("name")}
-	 * @return {@code true} if the {@link WebElement} is displayed and {@code false} if it is not displayed before the timeout
-	 */
-
-	public boolean waitForWebElement(By by){
-		return (waiter.waitForWebElement(by, 0, Timeout.getLargeTimeout(), true) != null);
-	}
-
-	/**
-	 * Waits for a WebElement matching the specified By object.
-	 * 
-	 * @param by the By object. Examples are: {@code By.id("id")} and {@code By.name("name")}
-	 * @param timeout the the amount of time in milliseconds to wait 
-	 * @param scroll {@code true} if scrolling should be performed
-	 * @return {@code true} if the {@link WebElement} is displayed and {@code false} if it is not displayed before the timeout
-	 */
-
-	public boolean waitForWebElement(By by, int timeout, boolean scroll){
-		return (waiter.waitForWebElement(by, 0, timeout, scroll) != null);
-	}
-
-	/**
-	 * Waits for a WebElement matching the specified By object.
-	 * 
-	 * @param by the By object. Examples are: {@code By.id("id")} and {@code By.name("name")}
-	 * @param minimumNumberOfMatches the minimum number of matches that are expected to be found. {@code 0} means any number of matches
-	 * @param timeout the the amount of time in milliseconds to wait 
-	 * @param scroll {@code true} if scrolling should be performed
-	 * @return {@code true} if the {@link WebElement} is displayed and {@code false} if it is not displayed before the timeout
-	 */
-
-	public boolean waitForWebElement(By by, int minimumNumberOfMatches, int timeout, boolean scroll){
-		return (waiter.waitForWebElement(by, minimumNumberOfMatches, timeout, scroll) != null);
-	}
-
-	/**
-	 * Waits for a condition to be satisfied.
-	 * 
-	 * @param condition the condition to wait for
-	 * @param timeout the amount of time in milliseconds to wait
-	 * @return {@code true} if condition is satisfied and {@code false} if it is not satisfied before the timeout
-	 */
-
-	public boolean waitForCondition(Condition condition, final int timeout){
-		return waiter.waitForCondition(condition, timeout);
-	}
-
+  
+    
 	/**
 	 * Searches for a text in the EditText objects currently displayed and returns true if found. Will automatically scroll when needed.
 	 *
@@ -499,7 +275,7 @@ public class Solo {
 	 */
 
 	public boolean searchEditText(String text) {
-		return searcher.searchWithTimeoutFor(EditText.class, text, 1, true, false);
+		return searcher.searchFor(EditText.class, text, 1, true, false) != null;
 	}
 
 
@@ -512,7 +288,7 @@ public class Solo {
 	 */
 
 	public boolean searchButton(String text) {
-		return searcher.searchWithTimeoutFor(Button.class, text, 0, true, false);
+		return searcher.searchFor(Button.class, text, 0, true, false) != null;
 	}
 
 	/**
@@ -525,7 +301,7 @@ public class Solo {
 	 */
 
 	public boolean searchButton(String text, boolean onlyVisible) {
-		return searcher.searchWithTimeoutFor(Button.class, text, 0, true, onlyVisible);
+		return searcher.searchFor(Button.class, text, 0, true, onlyVisible) != null;
 	}
 
 	/**
@@ -537,7 +313,7 @@ public class Solo {
 	 */
 
 	public boolean searchToggleButton(String text) {
-		return searcher.searchWithTimeoutFor(ToggleButton.class, text, 0, true, false);
+		return searcher.searchFor(ToggleButton.class, text, 0, true, false) != null;
 	}
 
 	/**
@@ -552,7 +328,7 @@ public class Solo {
 	 */
 
 	public boolean searchButton(String text, int minimumNumberOfMatches) {
-		return searcher.searchWithTimeoutFor(Button.class, text, minimumNumberOfMatches, true, false);
+		return searcher.searchFor(Button.class, text, minimumNumberOfMatches, true, false) != null;
 	}
 
 	/**
@@ -568,7 +344,7 @@ public class Solo {
 	 */
 
 	public boolean searchButton(String text, int minimumNumberOfMatches, boolean onlyVisible) {
-		return searcher.searchWithTimeoutFor(Button.class, text, minimumNumberOfMatches, true, onlyVisible);
+		return searcher.searchFor(Button.class, text, minimumNumberOfMatches, true, onlyVisible) != null;
 	}
 
 	/**
@@ -583,7 +359,7 @@ public class Solo {
 	 */
 
 	public boolean searchToggleButton(String text, int minimumNumberOfMatches) {
-		return searcher.searchWithTimeoutFor(ToggleButton.class, text, minimumNumberOfMatches, true, false);
+		return searcher.searchFor(ToggleButton.class, text, minimumNumberOfMatches, true, false) != null;
 	}
 
 	/**
@@ -595,7 +371,7 @@ public class Solo {
 	 */
 
 	public boolean searchText(String text) {
-		return searcher.searchWithTimeoutFor(TextView.class, text, 0, true, false);
+		return searcher.searchFor(TextView.class, text, 0, true, false) != null;
 	}
 
 	/**
@@ -608,7 +384,7 @@ public class Solo {
 	 */
 
 	public boolean searchText(String text, boolean onlyVisible) {
-		return searcher.searchWithTimeoutFor(TextView.class, text, 0, true, onlyVisible);
+		return searcher.searchFor(TextView.class, text, 0, true, onlyVisible) != null;
 	}
 
 	/**
@@ -623,7 +399,7 @@ public class Solo {
 	 */
 
 	public boolean searchText(String text, int minimumNumberOfMatches) {
-		return searcher.searchWithTimeoutFor(TextView.class, text, minimumNumberOfMatches, true, false);
+		return searcher.searchFor(TextView.class, text, minimumNumberOfMatches, true, false) != null;
 	}
 
 	/**
@@ -639,7 +415,7 @@ public class Solo {
 	 */
 
 	public boolean searchText(String text, int minimumNumberOfMatches, boolean scroll) {
-		return searcher.searchWithTimeoutFor(TextView.class, text, minimumNumberOfMatches, scroll, false);
+		return searcher.searchFor(TextView.class, text, minimumNumberOfMatches, scroll, false) != null;
 	}
 
 	/**
@@ -656,7 +432,7 @@ public class Solo {
 	 */
 
 	public boolean searchText(String text, int minimumNumberOfMatches, boolean scroll, boolean onlyVisible) {
-		return searcher.searchWithTimeoutFor(TextView.class, text, minimumNumberOfMatches, scroll, onlyVisible);
+		return searcher.searchFor(TextView.class, text, minimumNumberOfMatches, scroll, onlyVisible) != null;
 	}
 
 	/**
@@ -744,49 +520,6 @@ public class Solo {
 	{
 		asserter.assertMemoryNotLow();
 	}
-
-	/**
-	 * Waits for a Dialog to open. Default timeout is 20 seconds.
-	 * 
-	 * @return {@code true} if the {@link android.app.Dialog} is opened before the timeout and {@code false} if it is not opened
-	 */
-
-	public boolean waitForDialogToOpen() {
-		return dialogUtils.waitForDialogToOpen(Timeout.getLargeTimeout(), true);
-	}
-
-	/**
-	 * Waits for a Dialog to close. Default timeout is 20 seconds.
-	 * 
-	 * @return {@code true} if the {@link android.app.Dialog} is closed before the timeout and {@code false} if it is not closed
-	 */
-
-	public boolean waitForDialogToClose() {
-		return dialogUtils.waitForDialogToClose(Timeout.getLargeTimeout());
-	}
-
-	/**
-	 * Waits for a Dialog to open.
-	 * 
-	 * @param timeout the amount of time in milliseconds to wait
-	 * @return {@code true} if the {@link android.app.Dialog} is opened before the timeout and {@code false} if it is not opened
-	 */
-
-	public boolean waitForDialogToOpen(long timeout) {
-		return dialogUtils.waitForDialogToOpen(timeout, true);
-	}
-
-	/**
-	 * Waits for a Dialog to close.
-	 * 
-	 * @param timeout the amount of time in milliseconds to wait
-	 * @return {@code true} if the {@link android.app.Dialog} is closed before the timeout and {@code false} if it is not closed
-	 */
-
-	public boolean waitForDialogToClose(long timeout) {
-		return dialogUtils.waitForDialogToClose(timeout);
-	}
-
 
 	/**
 	 * Simulates pressing the hardware back key.
@@ -989,9 +722,8 @@ public class Solo {
 	 * @param itemIndex the index of the {@link Spinner} item to press relative to the currently selected item. 
 	 * A Negative number moves up on the {@link Spinner}, positive moves down 
 	 */
-
-	public void pressSpinnerItem(int spinnerIndex, int itemIndex)
-	{
+	
+	public void pressSpinnerItem(int spinnerIndex, int itemIndex) {
 		presser.pressSpinnerItem(spinnerIndex, itemIndex);
 	} 
 
@@ -1002,24 +734,7 @@ public class Solo {
 	 */
 
 	public void clickOnView(View view) {
-		waiter.waitForView(view, Timeout.getSmallTimeout());
 		clicker.clickOnScreen(view);
-	}
-
-	/**
-	 * Clicks the specified View.
-	 * 
-	 * @param view the {@link View} to click
-	 * @param immediately {@code true} if View should be clicked without any wait
-	 */
-
-	public void clickOnView(View view, boolean immediately){
-		if(immediately)
-			clicker.clickOnScreen(view);
-		else{
-			waiter.waitForView(view, Timeout.getSmallTimeout());
-			clicker.clickOnScreen(view);
-		}
 	}
 
 	/**
@@ -1029,9 +744,7 @@ public class Solo {
 	 */
 
 	public void clickLongOnView(View view) {
-		waiter.waitForView(view, Timeout.getSmallTimeout());
 		clicker.clickOnScreen(view, true, 0);
-
 	}	
 
 	/**
@@ -1287,9 +1000,7 @@ public class Solo {
 	 * the screen
 	 */
 
-	@SuppressWarnings("unchecked")
 	public boolean scrollDown() {
-		waiter.waitForViews(true, AbsListView.class, ScrollView.class, WebView.class);
 		return scroller.scroll(Scroller.DOWN);
 	}
 
@@ -1297,9 +1008,7 @@ public class Solo {
 	 * Scrolls to the bottom of the screen.
 	 */
 
-	@SuppressWarnings("unchecked")
 	public void scrollToBottom() {
-		waiter.waitForViews(true, AbsListView.class, ScrollView.class, WebView.class);
 		scroller.scroll(Scroller.DOWN, true);
 	}
 
@@ -1311,19 +1020,15 @@ public class Solo {
 	 * the screen 
 	 */
 
-	@SuppressWarnings("unchecked")
 	public boolean scrollUp(){
-		waiter.waitForViews(true, AbsListView.class, ScrollView.class, WebView.class);
 		return scroller.scroll(Scroller.UP);
 	}
 
 	/**
 	 * Scrolls to the top of the screen.
-	 */	
-
-	@SuppressWarnings("unchecked")
+	 */
+	
 	public void scrollToTop() {
-		waiter.waitForViews(true, AbsListView.class, ScrollView.class, WebView.class);
 		scroller.scroll(Scroller.UP, true);
 	}
 
@@ -1581,7 +1286,6 @@ public class Solo {
 	 */
 
 	public void setDatePicker(DatePicker datePicker, int year, int monthOfYear, int dayOfMonth) {
-		waiter.waitForView(datePicker, Timeout.getSmallTimeout());
 		setter.setDatePicker(datePicker, year, monthOfYear, dayOfMonth);
 	}
 
@@ -1606,7 +1310,6 @@ public class Solo {
 	 */
 
 	public void setTimePicker(TimePicker timePicker, int hour, int minute) {
-		waiter.waitForView(timePicker, Timeout.getSmallTimeout());
 		setter.setTimePicker(timePicker, hour, minute);
 	}
 
@@ -1629,7 +1332,6 @@ public class Solo {
 	 */
 
 	public void setProgressBar(ProgressBar progressBar, int progress){
-		waiter.waitForView(progressBar, Timeout.getSmallTimeout());
 		setter.setProgressBar(progressBar, progress);
 	}
 
@@ -1652,7 +1354,6 @@ public class Solo {
 	 */
 
 	public void setSlidingDrawer(SlidingDrawer slidingDrawer, int status){
-		waiter.waitForView(slidingDrawer, Timeout.getSmallTimeout());
 		setter.setSlidingDrawer(slidingDrawer, status);
 	}
 
@@ -1675,7 +1376,6 @@ public class Solo {
 	 */
 
 	public void enterText(EditText editText, String text) {
-		waiter.waitForView(editText, Timeout.getSmallTimeout());
 		textEnterer.setEditText(editText, text);		
 	}
 
@@ -1712,7 +1412,6 @@ public class Solo {
 	 */
 
 	public void typeText(EditText editText, String text) {
-		waiter.waitForView(editText, Timeout.getSmallTimeout());
 		textEnterer.typeText(editText, text);		
 	}
 
@@ -1763,19 +1462,19 @@ public class Solo {
 	public void clearEditText(int index) {
 		textEnterer.setEditText(waiter.waitForAndGetView(index, EditText.class), "");
 	}
-
-	/**
-	 * Clears the value of an EditText.
-	 * 
-	 * @param editText the {@link EditText} to clear
-	 */
-
-	public void clearEditText(EditText editText) {
-		waiter.waitForView(editText, Timeout.getSmallTimeout());
-		textEnterer.setEditText(editText, "");	
-	}
-
-	/**
+    
+    /**
+     * Clears the value of an EditText.
+     * 
+     * @param editText the {@link EditText} to clear
+	 *
+     */
+	
+    public void clearEditText(EditText editText) {
+    	textEnterer.setEditText(editText, "");	
+    }
+    
+    /**
 	 * Clears text in a WebElement matching the specified By object.
 	 * 
 	 * @param by the By object. Examples are: {@code By.id("id")} and {@code By.name("name")}
@@ -2181,11 +1880,8 @@ public class Solo {
 	 * @param text the text that the {@link CheckedTextView} or {@link CompoundButton} objects display, specified as a regular expression
 	 * @return {@code true} if the specified text is checked and {@code false} if it is not checked
 	 */
-
-	@SuppressWarnings("unchecked")
+	
 	public boolean isTextChecked(String text){
-		waiter.waitForViews(false, CheckedTextView.class, CompoundButton.class);
-
 		if(viewFetcher.getCurrentViews(CheckedTextView.class).size() > 0 && checker.isCheckedTextChecked(text))
 			return true;
 
@@ -2248,148 +1944,6 @@ public class Solo {
 
 	public void goBackToActivity(String name) {
 		activityUtils.goBackToActivity(name);
-	}
-
-	/**
-	 * Waits for an Activity matching the specified name. Default timeout is 20 seconds. 
-	 *
-	 * @param name the name of the {@code Activity} to wait for. Example is: {@code "MyActivity"}
-	 * @return {@code true} if {@code Activity} appears before the timeout and {@code false} if it does not
-	 */
-
-	public boolean waitForActivity(String name){
-		return waiter.waitForActivity(name, Timeout.getLargeTimeout());
-	}
-
-	/**
-	 * Waits for an Activity matching the specified name.
-	 *
-	 * @param name the name of the {@link Activity} to wait for. Example is: {@code "MyActivity"}
-	 * @param timeout the amount of time in milliseconds to wait
-	 * @return {@code true} if {@link Activity} appears before the timeout and {@code false} if it does not
-	 */
-
-	public boolean waitForActivity(String name, int timeout)
-	{
-		return waiter.waitForActivity(name, timeout);
-	}
-
-	/**
-	 * Waits for an Activity matching the specified class. Default timeout is 20 seconds.
-	 *
-	 * @param activityClass the class of the {@code Activity} to wait for. Example is: {@code MyActivity.class}
-	 * @return {@code true} if {@code Activity} appears before the timeout and {@code false} if it does not
-	 */
-
-	public boolean waitForActivity(Class<? extends Activity> activityClass){
-		return waiter.waitForActivity(activityClass, Timeout.getLargeTimeout());
-	}
-
-	/**
-	 * Waits for an Activity matching the specified class.
-	 *
-	 * @param activityClass the class of the {@code Activity} to wait for. Example is: {@code MyActivity.class}
-	 * @param timeout the amount of time in milliseconds to wait
-	 * @return {@code true} if {@link Activity} appears before the timeout and {@code false} if it does not
-	 */
-
-	public boolean waitForActivity(Class<? extends Activity> activityClass, int timeout)
-	{
-		return waiter.waitForActivity(activityClass, timeout);
-	}
-
-
-	/**
-	 * Wait for the activity stack to be empty.
-	 * 
-	 * @param timeout the amount of time in milliseconds to wait
-	 * @return {@code true} if activity stack is empty before the timeout and {@code false} if it is not
-	 */
-
-	public boolean waitForEmptyActivityStack(int timeout)
-	{
-		return waiter.waitForCondition(
-				new Condition(){
-					@Override
-					public boolean isSatisfied() {
-						return activityUtils.isActivityStackEmpty();
-					}
-				}, timeout);
-	}
-
-	/**
-	 * Waits for a Fragment matching the specified tag. Default timeout is 20 seconds.
-	 * 
-	 * @param tag the name of the tag	
-	 * @return {@code true} if fragment appears and {@code false} if it does not appear before the timeout
-	 */	
-
-	public boolean waitForFragmentByTag(String tag){
-		return waiter.waitForFragment(tag, 0, Timeout.getLargeTimeout());
-	}
-
-	/**
-	 * Waits for a Fragment matching the specified tag.
-	 * 
-	 * @param tag the name of the tag	
-	 * @param timeout the amount of time in milliseconds to wait
-	 * @return {@code true} if fragment appears and {@code false} if it does not appear before the timeout
-	 */	
-
-	public boolean waitForFragmentByTag(String tag, int timeout){
-		return waiter.waitForFragment(tag, 0, timeout);
-	}
-
-	/**
-	 * Waits for a Fragment matching the specified resource id. Default timeout is 20 seconds.
-	 * 
-	 * @param id the R.id of the fragment	
-	 * @return {@code true} if fragment appears and {@code false} if it does not appear before the timeout
-	 */
-
-	public boolean waitForFragmentById(int id){
-		return waiter.waitForFragment(null, id, Timeout.getLargeTimeout());
-	}
-
-	/**
-	 * Waits for a Fragment matching the specified resource id.
-	 * 
-	 * @param id the R.id of the fragment	
-	 * @param timeout the amount of time in milliseconds to wait
-	 * @return {@code true} if fragment appears and {@code false} if it does not appear before the timeout
-	 */
-
-	public boolean waitForFragmentById(int id, int timeout){
-		return waiter.waitForFragment(null, id, timeout);
-	}
-
-	/**
-	 * Waits for the specified log message to appear. Default timeout is 20 seconds.
-	 * Requires read logs permission (android.permission.READ_LOGS) in AndroidManifest.xml of the application under test.
-	 * 
-	 * @param logMessage the log message to wait for
-	 * @return {@code true} if log message appears and {@code false} if it does not appear before the timeout
-	 * 
-	 * @see clearLog()
-	 */
-
-	public boolean waitForLogMessage(String logMessage){
-		return waiter.waitForLogMessage(logMessage, Timeout.getLargeTimeout());
-	}
-
-	/**
-	 * Waits for the specified log message to appear.
-	 * Requires read logs permission (android.permission.READ_LOGS) in AndroidManifest.xml of the application under test.
-	 * 
-	 * @param logMessage the log message to wait for
-	 * @param timeout the amount of time in milliseconds to wait
-	 * @return {@code true} if log message appears and {@code false} if it does not appear before the timeout
-	 * 
-	 * @see clearLog()
-	 */
-
-	public boolean waitForLogMessage(String logMessage, int timeout){
-		return waiter.waitForLogMessage(logMessage, timeout);
 	}
 
 	/**
