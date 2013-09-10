@@ -116,11 +116,7 @@ class Getter {
 			viewToReturn = activity.findViewById(id);
 		}
 
-		if (viewToReturn != null) {
-			return viewToReturn;
-		}
-
-		return waiter.waitForView(id, index);
+		return viewToReturn;
 	}
 	
 	/**
