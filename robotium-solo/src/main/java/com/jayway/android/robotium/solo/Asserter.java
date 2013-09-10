@@ -35,10 +35,7 @@ class Asserter {
 	 */
 
 	public void assertCurrentActivity(String message, String name) {
-		boolean foundActivity = waiter.waitForActivity(name);
-
-		if(!foundActivity)
-			Assert.assertEquals(message, name, activityUtils.getCurrentActivity().getClass().getSimpleName());		
+		Assert.assertEquals(message, name, activityUtils.getCurrentActivity().getClass().getSimpleName());		
 	}
 
 	/**
@@ -53,11 +50,7 @@ class Asserter {
 			Assert.assertTrue("The specified Activity is null!", false);
 		}
 		
-		boolean foundActivity = waiter.waitForActivity(expectedClass);
-
-		if(!foundActivity) {
-			Assert.assertEquals(message, expectedClass.getName(), activityUtils.getCurrentActivity().getClass().getName());
-		}
+		Assert.assertEquals(message, expectedClass.getName(), activityUtils.getCurrentActivity().getClass().getName());
 	}
 
 	/**
