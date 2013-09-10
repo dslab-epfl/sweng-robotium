@@ -624,9 +624,8 @@ class Waiter {
 	 */
 
 	public void clearLog(){
-		Process p = null;
 		try {
-			p = Runtime.getRuntime().exec("logcat -c");
+			Runtime.getRuntime().exec("logcat -c");
 		}catch(IOException e){
 			e.printStackTrace();
 		}
