@@ -338,7 +338,7 @@ class Waiter {
 			}
 			sleeper.sleep();
 
-			WebElement webElementToReturn = searcher.searchForWebElement(by, minimumNumberOfMatches, timeout, scroll); 
+			WebElement webElementToReturn = searcher.searchForWebElement(by, minimumNumberOfMatches, scroll); 
 
 			if(webElementToReturn != null)
 				return webElementToReturn;
@@ -470,7 +470,7 @@ class Waiter {
 			if(!hardStoppage)
 				timeout = 0;
 
-			final T textViewToReturn = searcher.searchFor(classToFilterBy, text, expectedMinimumNumberOfMatches, timeout, scroll, onlyVisible);
+			final T textViewToReturn = searcher.searchFor(classToFilterBy, text, expectedMinimumNumberOfMatches, scroll, onlyVisible);
 
 			if (textViewToReturn != null ){
 				return textViewToReturn;
