@@ -49,7 +49,7 @@ class TextEnterer{
 			{
 				public void run()
 				{
-					editText.setInputType(InputType.TYPE_NULL); 
+					//editText.setInputType(InputType.TYPE_NULL); REMOVED THIS BECAUSE IT CAUSES 2 TESTING TRANSACTIONS 
 					editText.performClick();
 					dialogUtils.hideSoftKeyboard(editText, false, false);
 					if(text.equals(""))
