@@ -1,16 +1,10 @@
 package com.jayway.android.robotium.solo;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+
 import junit.framework.Assert;
-import android.app.Activity;
 import android.os.SystemClock;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -25,14 +19,9 @@ import android.widget.TextView;
 
 class Waiter {
 
-	private final ActivityUtils activityUtils;
 	private final ViewFetcher viewFetcher;
 	private final Searcher searcher;
-	private final Scroller scroller;
 	private final Sleeper sleeper;
-	private final int MINISLEEP = 50;
-
-
 	/**
 	 * Constructs this object.
 	 *
@@ -44,10 +33,8 @@ class Waiter {
 	 */
 
 	public Waiter(ActivityUtils activityUtils, ViewFetcher viewFetcher, Searcher searcher, Scroller scroller, Sleeper sleeper){
-		this.activityUtils = activityUtils;
 		this.viewFetcher = viewFetcher;
 		this.searcher = searcher;
-		this.scroller = scroller;
 		this.sleeper = sleeper;
 	}
 
