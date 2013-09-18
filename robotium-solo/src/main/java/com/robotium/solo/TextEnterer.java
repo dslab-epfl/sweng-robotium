@@ -51,7 +51,7 @@ class TextEnterer{
 				{
 					//editText.setInputType(InputType.TYPE_NULL); REMOVED THIS BECAUSE IT CAUSES 2 TESTING TRANSACTIONS 
 					editText.performClick();
-					dialogUtils.hideSoftKeyboard(editText, false, false);
+					dialogUtils.hideSoftKeyboard(editText);
 					if(text.equals(""))
 						editText.setText(text);
 					else{
@@ -80,7 +80,7 @@ class TextEnterer{
 				}
 			});
 			clicker.clickOnScreen(editText, false, 0);
-			dialogUtils.hideSoftKeyboard(editText, true, true);
+			dialogUtils.hideSoftKeyboard(editText);
 
 			boolean successfull = false;
 			int retry = 0;
@@ -91,7 +91,7 @@ class TextEnterer{
 					inst.sendStringSync(text);
 					successfull = true;
 				}catch(SecurityException e){
-					dialogUtils.hideSoftKeyboard(editText, true, true);
+					dialogUtils.hideSoftKeyboard(editText);
 					retry++;
 				}
 			}
