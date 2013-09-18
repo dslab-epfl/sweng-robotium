@@ -68,7 +68,6 @@ class Presser{
 		for(int i = 1; i <=3; i++)
 			row[i] = itemsPerRow*i;
 
-		sleeper.sleep();
 		try{
 			inst.sendKeyDownUpSync(KeyEvent.KEYCODE_MENU);
 			dialogUtils.waitForDialogToOpen(Timeout.getSmallTimeout(), true);

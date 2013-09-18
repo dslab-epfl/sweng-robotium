@@ -16,8 +16,8 @@ import android.view.KeyEvent;
 class Sender {
 
 	private final Instrumentation inst;
-	private final Sleeper sleeper;
-
+	
+	
 	/**
 	 * Constructs this object.
 	 * 
@@ -27,7 +27,6 @@ class Sender {
 
 	Sender(Instrumentation inst, Sleeper sleeper) {
 		this.inst = inst;
-		this.sleeper = sleeper;
 	}
 
 	/**
@@ -38,7 +37,6 @@ class Sender {
 
 	public void sendKeyCode(int keycode)
 	{
-		sleeper.sleep();
 		try{
 			inst.sendCharacterSync(keycode);
 		}catch(SecurityException e){
@@ -51,10 +49,8 @@ class Sender {
 	 */
 
 	public void goBack() {
-		sleeper.sleep();
 		try {
 			inst.sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);
-			sleeper.sleep();
 		} catch (Throwable ignored) {}
 	}
 }
