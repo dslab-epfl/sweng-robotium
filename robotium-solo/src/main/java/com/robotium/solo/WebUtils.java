@@ -271,7 +271,7 @@ class WebUtils {
 
 		final String javaScript = prepareForStartOfJavascriptExecution();
 
-		activityUtils.getCurrentActivity(false).runOnUiThread(new Runnable() {
+		activityUtils.getCurrentActivity().runOnUiThread(new Runnable() {
 			public void run() {
 				if(webView != null){
 					webView.loadUrl("javascript:" + javaScript + function);

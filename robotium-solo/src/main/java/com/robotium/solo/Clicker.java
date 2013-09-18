@@ -91,8 +91,7 @@ class Clicker {
 				successfull = true;
 			}catch(SecurityException e){
 				ex = e;
-				dialogUtils.hideSoftKeyboard(null, false, true);
-				sleeper.sleep(MINI_WAIT);
+				dialogUtils.hideSoftKeyboard();
 				retry++;
 				View identicalView = viewFetcher.getIdenticalView(view);
 				if(identicalView != null){
@@ -130,8 +129,7 @@ class Clicker {
 				sleeper.sleep(MINI_WAIT);
 			}catch(SecurityException e){
 				ex = e;
-				dialogUtils.hideSoftKeyboard(null, false, true);
-				sleeper.sleep(MINI_WAIT);
+				dialogUtils.hideSoftKeyboard();
 				retry++;
 				View identicalView = viewFetcher.getIdenticalView(view);
 				if(identicalView != null){

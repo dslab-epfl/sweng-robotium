@@ -50,7 +50,7 @@ class Setter{
 	public void setDatePicker(final DatePicker datePicker, final int year, final int monthOfYear, final int dayOfMonth) {
 		if(datePicker != null){
 
-			activityUtils.getCurrentActivity(false).runOnUiThread(new Runnable()
+			activityUtils.getCurrentActivity().runOnUiThread(new Runnable()
 			{
 				public void run()
 				{
@@ -74,7 +74,7 @@ class Setter{
 	public void setTimePicker(final TimePicker timePicker, final int hour, final int minute) {
 		if(timePicker != null){
 
-			activityUtils.getCurrentActivity(false).runOnUiThread(new Runnable()
+			activityUtils.getCurrentActivity().runOnUiThread(new Runnable()
 			{
 				public void run()
 				{
@@ -97,7 +97,7 @@ class Setter{
 	public void setProgressBar(final ProgressBar progressBar,final int progress) {
 		if(progressBar != null){
 
-			activityUtils.getCurrentActivity(false).runOnUiThread(new Runnable()
+			activityUtils.getCurrentActivity().runOnUiThread(new Runnable()
 			{
 				public void run()
 				{
