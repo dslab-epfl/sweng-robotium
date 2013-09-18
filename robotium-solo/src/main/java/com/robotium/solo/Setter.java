@@ -2,7 +2,6 @@ package com.robotium.solo;
 
 import android.widget.DatePicker;
 import android.widget.ProgressBar;
-import android.widget.SlidingDrawer;
 import android.widget.TimePicker;
 
 
@@ -16,8 +15,6 @@ import android.widget.TimePicker;
 
 class Setter{
 
-	private final int CLOSED = 0;
-	private final int OPENED = 1;
 	private final ActivityUtils activityUtils;
 
 	/**
@@ -100,36 +97,5 @@ class Setter{
 				}
 			});
 		}
-	}
-
-
-	/**
-	 * Sets the status of a given SlidingDrawer. Examples are Solo.CLOSED and Solo.OPENED.
-	 *
-	 * @param slidingDrawer the {@link SlidingDrawer}
-	 * @param status the status that the {@link SlidingDrawer} should be set to
-	 */
-
-	public void setSlidingDrawer(final SlidingDrawer slidingDrawer, final int status){
-		if(slidingDrawer != null){
-
-			activityUtils.getCurrentActivity(false).runOnUiThread(new Runnable()
-			{
-				public void run()
-				{
-					try{
-						switch (status) {
-						case CLOSED:
-							slidingDrawer.close();
-							break;
-						case OPENED:
-							slidingDrawer.open();
-							break;
-						}
-					}catch (Exception ignored){}
-				}
-			});
-		}
-
 	}
 }
