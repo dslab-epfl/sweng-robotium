@@ -93,7 +93,7 @@ class DialogUtils {
 	 */
 
 	private boolean isDialogOpen(){
-		final Activity activity = activityUtils.getCurrentActivity(false);
+		final Activity activity = activityUtils.getCurrentActivity();
 		final View view = viewFetcher.getRecentDecorView(viewFetcher.getWindowDecorViews());
 		Context viewContext = null;
 		if(view != null){
@@ -111,13 +111,10 @@ class DialogUtils {
 
 	/**
 	 * Hides the soft keyboard
-	 * 
-	 * @param shouldSleepFirst whether to sleep a default pause first
-	 * @param shouldSleepAfter whether to sleep a default pause after
 	 */
 
-	public void hideSoftKeyboard(EditText editText, boolean shouldSleepFirst, boolean shouldSleepAfter) {
-		Activity activity = activityUtils.getCurrentActivity(shouldSleepFirst);
+	public void hideSoftKeyboard(EditText editText) {
+		Activity activity = activityUtils.getCurrentActivity();
 
 		InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
 
@@ -135,9 +132,6 @@ class DialogUtils {
 		}
 		if(focusedView != null) {
 			inputMethodManager.hideSoftInputFromWindow(focusedView.getWindowToken(), 0);
-		}
-		if(shouldSleepAfter){
-			sleeper.sleep();
 		}
 	}
 }

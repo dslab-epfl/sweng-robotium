@@ -77,7 +77,7 @@ class Getter {
 
 	public String getString(int id)
 	{
-		Activity activity = activityUtils.getCurrentActivity(false);
+		Activity activity = activityUtils.getCurrentActivity();
 		return activity.getString(id);
 	}
 	
@@ -108,7 +108,7 @@ class Getter {
 	 */
 
 	public View getView(int id, int index){
-		final Activity activity = activityUtils.getCurrentActivity(false);
+		final Activity activity = activityUtils.getCurrentActivity();
 		View viewToReturn = null;
 
 		if(index < 1){

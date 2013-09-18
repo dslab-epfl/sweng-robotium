@@ -387,7 +387,7 @@ public class Solo {
 	 */
 	
 	public Activity getCurrentActivity() {
-		return activityUtils.getCurrentActivity(false);
+		return activityUtils.getCurrentActivity();
 	}
 	
 	/**
@@ -955,7 +955,7 @@ public class Solo {
 
 	public void drag(float fromX, float toX, float fromY, float toY, 
 			int stepCount) {
-		dialogUtils.hideSoftKeyboard(null, false, true);
+		dialogUtils.hideSoftKeyboard(null);
 		scroller.drag(fromX, toX, fromY, toY, stepCount);
 	}
 
@@ -1396,7 +1396,7 @@ public class Solo {
 	
 	public void typeTextInWebElement(By by, String text){
 		clickOnWebElement(by);
-		dialogUtils.hideSoftKeyboard(null, true, true);
+		dialogUtils.hideSoftKeyboard(null);
 		instrumentation.sendStringSync(text);
 	}
 	
@@ -1411,7 +1411,7 @@ public class Solo {
 	
 	public void typeTextInWebElement(By by, String text, int match){
 		clickOnWebElement(by, match);
-		dialogUtils.hideSoftKeyboard(null, true, true);
+		dialogUtils.hideSoftKeyboard(null);
 		instrumentation.sendStringSync(text);
 	}
 	
@@ -1425,7 +1425,7 @@ public class Solo {
 	
 	public void typeTextInWebElement(WebElement webElement, String text){
 		clickOnWebElement(webElement);
-		dialogUtils.hideSoftKeyboard(null, true, true);
+		dialogUtils.hideSoftKeyboard(null);
 		instrumentation.sendStringSync(text);
 	}
 
@@ -1920,7 +1920,7 @@ public class Solo {
 	 */
 	
 	public void hideSoftKeyboard() {
-		dialogUtils.hideSoftKeyboard(null, true, false);
+		dialogUtils.hideSoftKeyboard(null);
 	}
 
 	/**
