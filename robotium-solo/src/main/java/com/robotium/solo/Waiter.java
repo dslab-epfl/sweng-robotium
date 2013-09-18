@@ -62,16 +62,16 @@ class Waiter {
 		final long endTime = SystemClock.uptimeMillis() + timeout;
 
 		while (true) {
+			if (condition.isSatisfied()){
+				return true;
+			}
+
 			final boolean timedOut = SystemClock.uptimeMillis() > endTime;
 			if (timedOut){
 				return false;
 			}
 
 			sleeper.sleep();
-
-			if (condition.isSatisfied()){
-				return true;
-			}
 		}
 	}
 
@@ -162,21 +162,17 @@ class Waiter {
 		final long endTime = SystemClock.uptimeMillis() + timeout;
 
 		while (true) {
+			final T textViewToReturn = searcher.searchFor(classToFilterBy, text, expectedMinimumNumberOfMatches, scroll, onlyVisible);
+			if (textViewToReturn != null ){
+				return textViewToReturn;
+			}
+
 			final boolean timedOut = SystemClock.uptimeMillis() > endTime;
 			if (timedOut){
 				return null;
 			}
 
 			sleeper.sleep();
-
-			if(!hardStoppage)
-				timeout = 0;
-
-			final T textViewToReturn = searcher.searchFor(classToFilterBy, text, expectedMinimumNumberOfMatches, scroll, onlyVisible);
-
-			if (textViewToReturn != null ){
-				return textViewToReturn;
-			}
 		}
 	}
 

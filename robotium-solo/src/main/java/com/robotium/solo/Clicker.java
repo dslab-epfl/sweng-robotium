@@ -91,7 +91,6 @@ class Clicker {
 				inst.sendPointerSync(event);
 				inst.sendPointerSync(event2);
 				successfull = true;
-				sleeper.sleep(MINISLEEP);
 			}catch(SecurityException e){
 				dialogUtils.hideSoftKeyboard(null);
 				retry++;
