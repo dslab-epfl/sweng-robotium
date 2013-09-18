@@ -3,7 +3,6 @@ package com.robotium.solo;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ProgressBar;
-import android.widget.SlidingDrawer;
 import android.widget.TimePicker;
 
 
@@ -17,8 +16,6 @@ import android.widget.TimePicker;
 
 class Setter{
 
-	private final int CLOSED = 0;
-	private final int OPENED = 1;
 	private final ActivityUtils activityUtils;
 	private final Getter getter;
 	private final Clicker clicker;
@@ -110,73 +107,5 @@ class Setter{
 				}
 			});
 		}
-	}
-
-
-	/**
-	 * Sets the status of a given SlidingDrawer. Examples are Solo.CLOSED and Solo.OPENED.
-	 *
-	 * @param slidingDrawer the {@link SlidingDrawer}
-	 * @param status the status that the {@link SlidingDrawer} should be set to
-	 */
-
-	public void setSlidingDrawer(final SlidingDrawer slidingDrawer, final int status){
-		if(slidingDrawer != null){
-
-			activityUtils.getCurrentActivity(false).runOnUiThread(new Runnable()
-			{
-				public void run()
-				{
-					try{
-						switch (status) {
-						case CLOSED:
-							slidingDrawer.close();
-							break;
-						case OPENED:
-							slidingDrawer.open();
-							break;
-						}
-					}catch (Exception ignored){}
-				}
-			});
-		}
-
-	}
-
-	/**
-	 * Sets the status of the NavigationDrawer. Examples are Solo.CLOSED and Solo.OPENED.
-	 *
-	 * @param status the status that the {@link NavigationDrawer} should be set to
-	 */
-
-	public void setNavigationDrawer(final int status){
-		final View homeView = getter.getView("home", 0);
-		final View leftDrawer = getter.getView("left_drawer", 0);
-		
-		try{
-			switch (status) {
-			
-			case CLOSED:
-				if(leftDrawer != null && homeView != null && leftDrawer.isShown()){
-					clicker.clickOnScreen(homeView);
-				}
-				break;
-				
-			case OPENED:
-				if(leftDrawer != null && homeView != null &&  !leftDrawer.isShown()){
-					clicker.clickOnScreen(homeView);
-
-					Condition condition = new Condition() {
-
-						@Override
-						public boolean isSatisfied() {
-							return leftDrawer.isShown();
-						}
-					};
-					waiter.waitForCondition(condition, Timeout.getSmallTimeout());
-				}
-				break;
-			}
-		}catch (Exception ignored){}
 	}
 }

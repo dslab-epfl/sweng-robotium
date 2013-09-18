@@ -13,8 +13,7 @@ import android.app.ActivityManager;
 
 class Asserter {
 	private final ActivityUtils activityUtils;
-	private final Waiter waiter;
-
+	
 	/**
 	 * Constructs this object.
 	 *
@@ -24,7 +23,6 @@ class Asserter {
 
 	public Asserter(ActivityUtils activityUtils, Waiter waiter) {
 		this.activityUtils = activityUtils;
-		this.waiter = waiter;
 	}
 
 	/**
