@@ -312,7 +312,7 @@ class Scroller {
 	public void scrollToSide(Side side, float scrollPosition) {
 		int screenHeight = activityUtils.getCurrentActivity().getWindowManager().getDefaultDisplay()
 				.getHeight();
-		int screenWidth = activityUtils.getCurrentActivity(false).getWindowManager().getDefaultDisplay()
+		int screenWidth = activityUtils.getCurrentActivity().getWindowManager().getDefaultDisplay()
 				.getWidth();
 		float x = screenWidth * scrollPosition;
 		float y = screenHeight / 2.0f;

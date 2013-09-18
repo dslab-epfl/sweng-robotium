@@ -281,7 +281,7 @@ class ViewFetcher {
 		View parent = getScrollOrListParent(view);
 		final float windowHeight;
 		if(parent == null){
-			windowHeight = activityUtils.getCurrentActivity(false).getWindowManager()
+			windowHeight = activityUtils.getCurrentActivity().getWindowManager()
 			.getDefaultDisplay().getHeight();
 		}
 		else{

@@ -69,7 +69,7 @@ class ScreenshotTaker {
 
 		initScreenShotSaver();
 		ScreenshotRunnable runnable = new ScreenshotRunnable(decorView, name, quality);
-		activityUtils.getCurrentActivity(false).runOnUiThread(runnable);
+		activityUtils.getCurrentActivity().runOnUiThread(runnable);
 	}
 
 	/**
@@ -296,7 +296,7 @@ class ScreenshotTaker {
 			String final_name = name+"_"+seqno;
 			ScreenshotRunnable r = new ScreenshotRunnable(v, final_name, quality);
 			Log.d(LOG_TAG, "taking screenshot "+final_name);
-			activityUtils.getCurrentActivity(false).runOnUiThread(r);
+			activityUtils.getCurrentActivity().runOnUiThread(r);
 		}
 
 		public void interrupt() {
