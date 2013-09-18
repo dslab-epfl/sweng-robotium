@@ -21,7 +21,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
-import android.widget.SlidingDrawer;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ListView;
@@ -1323,32 +1322,6 @@ public class Solo {
 	public void setProgressBar(ProgressBar progressBar, int progress){
 		setter.setProgressBar(progressBar, progress);
 	}
-	
-	/**
-	 * Sets the status of a SlidingDrawer matching the specified index. Examples of status are: {@code Solo.CLOSED} and {@code Solo.OPENED}.
-	 *
-	 * @param index the index of the {@link SlidingDrawer}
-	 * @param status the status to set the {@link SlidingDrawer} 
-	 * 
-	 */
-
-	public void setSlidingDrawer(int index, int status){
-		setSlidingDrawer(waiter.getView(index, SlidingDrawer.class), status);
-	}
-
-	/**
-	 * Sets the status of the specified SlidingDrawer. Examples of status are: {@code Solo.CLOSED} and {@code Solo.OPENED}.
-	 *
-	 * @param slidingDrawer the {@link SlidingDrawer}
-	 * @param status the status to set the {@link SlidingDrawer} 
-	 * 
-	 */
-
-	public void setSlidingDrawer(SlidingDrawer slidingDrawer, int status){
-		setter.setSlidingDrawer(slidingDrawer, status);
-	}
-
-	
 	
 	/**
 	 * Enters text in an EditText matching the specified index.

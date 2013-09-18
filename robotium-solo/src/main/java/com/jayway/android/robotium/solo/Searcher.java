@@ -29,9 +29,8 @@ class Searcher {
 	Set<TextView> uniqueTextViews;
 	List<WebElement> webElements;
 	private int numberOfUniqueViews;
-	private final int TIMEOUT = 5000;
-
-
+	
+	
 	/**
 	 * Constructs this object.
 	 *
