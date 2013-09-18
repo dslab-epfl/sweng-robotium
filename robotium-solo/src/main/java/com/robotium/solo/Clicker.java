@@ -38,7 +38,6 @@ class Clicker {
 	private final Waiter waiter;
 	private final WebUtils webUtils;
 	private final DialogUtils dialogUtils;
-	private final int MINISLEEP = 100;
 	private final int TIMEOUT = 200;
 	private final int WAIT_TIME = 1500;
 

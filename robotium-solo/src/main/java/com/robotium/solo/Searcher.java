@@ -24,7 +24,6 @@ class Searcher {
 	private final ViewFetcher viewFetcher;
 	private final WebUtils webUtils;
 	private final Scroller scroller;
-	private final Sleeper sleeper;
 	private final String LOG_TAG = "Robotium";
 	Set<TextView> uniqueTextViews;
 	List<WebElement> webElements;
@@ -37,14 +36,12 @@ class Searcher {
 	 * @param viewFetcher the {@code ViewFetcher} instance
 	 * @param webUtils the {@code WebUtils} instance
 	 * @param scroller the {@code Scroller} instance
-	 * @param sleeper the {@code Sleeper} instance.
 	 */
 
-	public Searcher(ViewFetcher viewFetcher, WebUtils webUtils, Scroller scroller, Sleeper sleeper) {
+	public Searcher(ViewFetcher viewFetcher, WebUtils webUtils, Scroller scroller) {
 		this.viewFetcher = viewFetcher;
 		this.webUtils = webUtils;
 		this.scroller = scroller;
-		this.sleeper = sleeper;
 		webElements = new ArrayList<WebElement>();
 		uniqueTextViews = new HashSet<TextView>();
 	}

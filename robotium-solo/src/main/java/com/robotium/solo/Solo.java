@@ -124,7 +124,7 @@ public class Solo {
 		this.dialogUtils = new DialogUtils(activityUtils, viewFetcher, sleeper);
 		this.webUtils = new WebUtils(config, instrumentation,activityUtils,viewFetcher, sleeper);
 		this.scroller = new Scroller(config, instrumentation, activityUtils, viewFetcher, sleeper);
-		this.searcher = new Searcher(viewFetcher, webUtils, scroller, sleeper);
+		this.searcher = new Searcher(viewFetcher, webUtils, scroller);
 		this.waiter = new Waiter(activityUtils, viewFetcher, searcher,scroller, sleeper);
 		this.setter = new Setter(activityUtils);
 		this.getter = new Getter(instrumentation, activityUtils, waiter);
