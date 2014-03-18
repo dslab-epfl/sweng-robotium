@@ -43,11 +43,10 @@ class Waiter {
 	 * 
 	 * @param by the By object. Examples are By.id("id") and By.name("name")
 	 * @param minimumNumberOfMatches the minimum number of matches that are expected to be shown. {@code 0} means any number of matches
-	 * @param scroll {@code true} if scrolling should be performed 
 	 */
 
-	public WebElement getWebElement(final By by, int minimumNumberOfMatches, boolean scroll){
-		return searcher.searchForWebElement(by, minimumNumberOfMatches, scroll); 
+	public WebElement getWebElement(final By by, int minimumNumberOfMatches) {
+		return searcher.searchForWebElement(by, minimumNumberOfMatches); 
 	}
 
 

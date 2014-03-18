@@ -1356,7 +1356,7 @@ public class Solo {
 	 */
 
 	public void enterTextInWebElement(By by, String text){
-		if(waiter.getWebElement(by, 0, false) == null) {
+		if(waiter.getWebElement(by, 0) == null) {
 			Assert.fail("WebElement with " + webUtils.splitNameByUpperCase(by.getClass().getSimpleName()) + ": '" + by.getValue() + "' is not found!");
 		}
 		webUtils.enterTextIntoWebElement(by, text);
@@ -1683,7 +1683,7 @@ public class Solo {
 
 	public WebElement getWebElement(By by, int index){
 		int match = index + 1;
-		WebElement webElement = waiter.getWebElement(by, match, true);
+		WebElement webElement = waiter.getWebElement(by, match);
 
 		if(webElement == null) {
 			if(match > 1){
