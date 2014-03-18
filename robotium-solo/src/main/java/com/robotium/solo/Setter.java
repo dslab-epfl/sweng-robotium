@@ -1,6 +1,5 @@
 package com.robotium.solo;
 
-import android.view.View;
 import android.widget.DatePicker;
 import android.widget.ProgressBar;
 import android.widget.TimePicker;
@@ -17,24 +16,15 @@ import android.widget.TimePicker;
 class Setter{
 
 	private final ActivityUtils activityUtils;
-	private final Getter getter;
-	private final Clicker clicker;
-	private final Waiter waiter;
 
 	/**
 	 * Constructs this object.
 	 *
 	 * @param activityUtils the {@code ActivityUtils} instance
-	 * @param getter the {@code Getter} instance
-	 * @param clicker the {@code Clicker} instance
-	 * @param waiter the {@code Waiter} instance
 	 */
 
-	public Setter(ActivityUtils activityUtils, Getter getter, Clicker clicker, Waiter waiter) {
+	public Setter(ActivityUtils activityUtils) {
 		this.activityUtils = activityUtils;
-		this.getter = getter;
-		this.clicker = clicker;
-		this.waiter = waiter;
 	}
 
 

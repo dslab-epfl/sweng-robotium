@@ -141,7 +141,7 @@ public class Solo {
 		this.waiter = new Waiter(activityUtils, viewFetcher, searcher,scroller, sleeper);
 		this.getter = new Getter(instrumentation, activityUtils, waiter);
 		this.clicker = new Clicker(activityUtils, viewFetcher,sender, instrumentation, sleeper, waiter, webUtils, dialogUtils);
-		this.setter = new Setter(activityUtils, getter, clicker, waiter);
+		this.setter = new Setter(activityUtils);
 		this.asserter = new Asserter(activityUtils, waiter);
 		this.checker = new Checker(viewFetcher, waiter);
 		this.zoomer = new Zoomer(instrumentation);
@@ -560,7 +560,7 @@ public class Solo {
 	 */
 
 	public void clickOnScreen(float x, float y) {
-		clicker.clickOnScreen(x, y);
+		clicker.clickOnScreen(x, y, null);
 	}
 
 	/**
@@ -1200,8 +1200,6 @@ public class Solo {
 	 */
 
 	public void scrollViewToSide(View view, int side, float scrollPosition) {
-		waitForView(view);
-		sleeper.sleep();
 		switch (side){
 		case RIGHT: scroller.scrollViewToSide(view, Scroller.Side.RIGHT, scrollPosition); break;
 		case LEFT:  scroller.scrollViewToSide(view, Scroller.Side.LEFT, scrollPosition);  break;
@@ -1216,8 +1214,6 @@ public class Solo {
 	 */
 
 	public void scrollViewToSide(View view, int side) {
-		waitForView(view);
-		sleeper.sleep();
 		switch (side){
 		case RIGHT: scroller.scrollViewToSide(view, Scroller.Side.RIGHT, 0.70F); break;
 		case LEFT:  scroller.scrollViewToSide(view, Scroller.Side.LEFT, 0.70F);  break;
@@ -1361,16 +1357,6 @@ public class Solo {
 		setter.setProgressBar(progressBar, progress);
 	}
 	
-	/**
-	 * Sets the status of the NavigationDrawer. Examples of status are: {@code Solo.CLOSED} and {@code Solo.OPENED}.
-	 *
-	 * @param status the status that the {@link NavigationDrawer} should be set to
-	 */
-
-	public void setNavigationDrawer(final int status){
-		setter.setNavigationDrawer(status);
-	}
-
 	/**
 	 * Enters text in an EditText matching the specified index.
 	 *

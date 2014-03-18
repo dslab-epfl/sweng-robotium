@@ -91,7 +91,7 @@ class Clicker {
 				successfull = true;
 			}catch(SecurityException e){
 				ex = e;
-				dialogUtils.hideSoftKeyboard();
+				dialogUtils.hideSoftKeyboard(null);
 				retry++;
 				View identicalView = viewFetcher.getIdenticalView(view);
 				if(identicalView != null){
@@ -129,7 +129,7 @@ class Clicker {
 				sleeper.sleep(MINI_WAIT);
 			}catch(SecurityException e){
 				ex = e;
-				dialogUtils.hideSoftKeyboard();
+				dialogUtils.hideSoftKeyboard(null);
 				retry++;
 				View identicalView = viewFetcher.getIdenticalView(view);
 				if(identicalView != null){
@@ -556,7 +556,7 @@ class Clicker {
 			absListView = (AbsListView) viewFetcher.getIdenticalView(absListView);
 
 			if(absListView == null){
-				absListView = waiter.waitForAndGetView(index, AbsListView.class);
+				absListView = waiter.getView(index, AbsListView.class);
 			}
 			
 			view = absListView.getChildAt(lineIndex);
