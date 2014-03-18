@@ -386,7 +386,7 @@ class Clicker {
 
 	public void clickOnWebElement(By by, int match, boolean scroll, boolean useJavaScriptToClick){
 		if(useJavaScriptToClick){
-			WebElement webElement = waiter.getWebElement(by, match, false);
+			WebElement webElement = waiter.getWebElement(by, match);
 			if(webElement == null){
 				Assert.fail("WebElement with " + webUtils.splitNameByUpperCase(by.getClass().getSimpleName()) + ": '" + by.getValue() + "' is not found!");
 			}
@@ -394,7 +394,7 @@ class Clicker {
 			return;
 		}
 		
-		WebElement webElementToClick = waiter.getWebElement(by, match, scroll);
+		WebElement webElementToClick = waiter.getWebElement(by, match);
 		
 		if(webElementToClick == null){
 			if(match > 1) {
